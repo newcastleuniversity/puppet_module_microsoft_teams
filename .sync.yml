@@ -1,0 +1,32 @@
+---
+
+#Gemfile:
+#  optional:
+#    ':development':
+#      - gem: hiera-puppet-helper
+
+'spec/spec_helper.rb':
+  mock_with: ':rspec'
+  coverage_report: true
+  minimum_code_coverage_percentage: 90
+#  'spec_overrides':
+#    - "require 'hiera-puppet-helper'"
+#    - "fixture_path = File.expand_path(File.join(__FILE__, '..', 'fixtures'))"
+#    - 'shared_context "hieradata" do'
+#    - '  let(:hiera_config) do'
+#    - "    { :backends => ['rspec', 'yaml'],"
+#    - '    :hierarchy => ['
+#    - "      '%{calling_module}',"
+#    - "      'test'],"
+#    - "    :yaml => {"
+#    - "      :datadir => File.join(fixture_path, 'hiera') },"
+#    - "    :rspec => respond_to?(:hiera_data) ? hiera_data : {} }"
+#    - ""
+#    - '  end'
+#    - 'end'
+'spec/default_facts.yml':
+  aio_agent_version: '6.4.2'
+  puppet_config: '/etc/puppetlabs/puppet/puppet.conf'
+  hostname: 'example'
+  ssh_version: 'OpenSSH_7.6p1'
+  ssh_version_numeric: '7.6'
