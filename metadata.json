@@ -7,12 +7,12 @@
   "source": "",
   "dependencies": [
     {
-      "name":"puppetlabs/apt",
-      "version_requirement":">= 4.0.0 < 5.0.0"
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     },
     {
-      "name":"puppetlabs/stdlib",
-      "version_requirement":">= 4.0.0 < 5.0.0"
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -36,7 +36,7 @@
       "version_requirement": ">= 4.10.0 < 7.0.0"
     }
   ],
-  "pdk-version": "1.14.1",
-  "template-url": "pdk-default#1.14.1",
-  "template-ref": "1.14.1-0-g0b5b39b"
+  "pdk-version": "2.1.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#1.18.0",
+  "template-ref": "tags/1.18.0-0-g095317c"
 }
