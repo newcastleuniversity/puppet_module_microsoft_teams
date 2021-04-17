@@ -3,26 +3,29 @@
 # @example
 #   include teams
 
-class teams (
-  $source   = 'puppet:///modules/teams/teams_1.2.00.32451_amd64.deb',
-  $filename = 'teams_1.2.00.32451_amd64.deb'
-){
+class teams {
   case $facts['osfamily'] {
     'Debian': {
       case $facts['architecture'] {
         'amd64': {
-          file { 'teams.deb':
-            ensure         => file,
-            path           => "/var/cache/apt/archives/${filename}",
-            source         => $source,
-            checksum       => 'sha256',
-            checksum_value => '28d8a0e644a4bb9d4ee9295953b97b7fa6558b8a9d1d28363a594f5cde1c05dc',
+
+          apt::key { 'microsoft':
+            id     => 'BC528686B50D79E339D3721CEB3E94ADBE1229CF',
+            source => 'https://packages.microsoft.com/keys/microsoft.asc',
           }
-          package { 'teams':
-            ensure   => installed,
-            provider => 'dpkg',
-            source   => "/var/cache/apt/archives/${filename}",
+
+          apt::source { 'teams':
+            location     => 'https://packages.microsoft.com/repos/ms-teams',
+            architecture => 'amd64',
+            release      => 'stable',
+            repos        => 'main',
           }
+
+          ~> package { 'teams':
+            ensure  => installed,
+            require => Apt::Source['teams'],
+          }
+
         }
         default: {
           notify { 'Unsupported architecture': }
