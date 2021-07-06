@@ -24,4 +24,26 @@ describe 'teams' do
       it { is_expected.to contain_package('teams').with('require' => 'Apt::Source[teams]') }
     end
   end
+  context 'should fail on Pis' do
+    let(:facts) do
+      {
+        'os' => {
+          'architecture' => 'armv7l',
+        },
+      }
+    end
+
+    it { is_expected.not_to compile } # this is how to test for the 'fail' built-in function because 'fail' results in a compilation error
+  end # end of the Pi context
+  context 'should fail on RedHat-like OSes' do
+    let(:facts) do
+      {
+        'os' => {
+          'operatingsystem' => 'CentOS',
+        },
+      }
+    end
+
+    it { is_expected.not_to compile } # this is how to test for the 'fail' built-in function because 'fail' results in a compilation error
+  end # end of the Pi context
 end

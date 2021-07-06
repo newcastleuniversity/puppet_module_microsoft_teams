@@ -22,18 +22,18 @@ class teams {
           }
 
           ~> package { 'teams':
-            ensure  => installed,
+            ensure  => latest,
             require => Apt::Source['teams'],
           }
 
         }
         default: {
-          notify { 'Unsupported architecture': }
+          fail('Teams only runs on AMD64, your architecture is unsupported.')
         }
       }
     }
     default: {
-      notify { 'Unsupported OS': }
+      fail('The Teams installer module only works with Debian derivatives, your distribution is unsupported.')
     }
   }
 }
