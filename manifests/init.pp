@@ -1,8 +1,3 @@
-# @summary Teams client installer
-#
-# @example
-#   include teams
-
 class teams {
   case $facts['osfamily'] {
     'Debian': {
@@ -32,8 +27,25 @@ class teams {
         }
       }
     }
+    'RedHat': {
+      case $facts['architecture'] {
+        'x86_64': {
+          yumrepo { 'teams':
+            baseurl  => 'https://packages.microsoft.com/yumrepos/ms-teams',
+            gpgkey   => 'https://packages.microsoft.com/keys/microsoft.asc',
+            descr    => 'Microsoft - Teams',
+            enabled  => 1,
+            gpgcheck => 1,
+          }
+          package { "teams":
+            ensure  => latest,
+            require => Yumrepo['teams'],
+          }
+        }
+      }
+    }
     default: {
-      fail('The Teams installer module only works with Debian derivatives, your distribution is unsupported.')
+      fail('The Teams installer module only works with amd64 Debian/x86_64 RHEL derivatives, your distribution is unsupported.')
     }
   }
 }
