@@ -12,6 +12,7 @@ class teams {
           apt::key { 'microsoft':
             id     => 'BC528686B50D79E339D3721CEB3E94ADBE1229CF',
             source => 'https://packages.microsoft.com/keys/microsoft.asc',
+            server => 'keyserver.ubuntu.com',
           }
 
           apt::source { 'teams':
