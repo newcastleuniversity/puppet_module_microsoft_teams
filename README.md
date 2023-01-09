@@ -1,5 +1,9 @@
 # Teams
 
+----
+**This project is now retired as Microsoft have retired the Linux Teams client.**  https://office365itpros.com/2022/09/19/teams-pwa-linux-client/
+
+----
 
 ## Description
 
